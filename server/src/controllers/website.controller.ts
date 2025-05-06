@@ -31,6 +31,13 @@ export async function getWebsites(req: any, res: any, next: any) {
         const websites = await prisma.url.findMany({
             where: {
                 user_id: req.user.id
+            },
+            include: {
+                CheckTable: {
+                    orderBy: {
+                        checkedAt: 'desc'
+                    }
+                }
             }
         });
 
@@ -118,6 +125,31 @@ export async function deleteWebsite(req: any, res: any, next: any) {
             message: 'Website deleted successfully',
             data: website
         })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error
+        });
+    }
+}
+
+async function getWebsiteChecks(req: any, res: any, next: any) {
+    try {
+        const { id } = req.params;
+
+        // check if website exists
+        const websiteExists = await prisma.url.findUnique({
+            where: {
+                id: id
+            }
+        });
+
+        if (!websiteExists) {
+            return res.status(404).json({
+                success: false,
+                message: 'Website not found'
+            })
+        }
     } catch (error) {
         res.status(500).json({
             success: false,

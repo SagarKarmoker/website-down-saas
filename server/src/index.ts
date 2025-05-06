@@ -18,7 +18,6 @@ app.use(express.json()); // Parse JSON bodies
 // Start website checking service
 const checkWebsiteService = new CheckWebsiteService(30000, RABBITMQ_URL as string);
 checkWebsiteService.init(); // replaces start()
-checkWebsiteService.consumeMessage();
 
 // Health check endpoint
 app.get('/api/health', (req: Request, res: Response) => {
