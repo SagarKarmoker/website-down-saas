@@ -28,6 +28,11 @@ export type Url = $Result.DefaultSelection<Prisma.$UrlPayload>
  * 
  */
 export type CheckTable = $Result.DefaultSelection<Prisma.$CheckTablePayload>
+/**
+ * Model EmailSending
+ * 
+ */
+export type EmailSending = $Result.DefaultSelection<Prisma.$EmailSendingPayload>
 
 /**
  * Enums
@@ -212,6 +217,16 @@ export class PrismaClient<
     * ```
     */
   get checkTable(): Prisma.CheckTableDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.emailSending`: Exposes CRUD operations for the **EmailSending** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmailSendings
+    * const emailSendings = await prisma.emailSending.findMany()
+    * ```
+    */
+  get emailSending(): Prisma.EmailSendingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -654,7 +669,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Url: 'Url',
-    CheckTable: 'CheckTable'
+    CheckTable: 'CheckTable',
+    EmailSending: 'EmailSending'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -673,7 +689,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "url" | "checkTable"
+      modelProps: "user" | "url" | "checkTable" | "emailSending"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -899,6 +915,80 @@ export namespace Prisma {
           }
         }
       }
+      EmailSending: {
+        payload: Prisma.$EmailSendingPayload<ExtArgs>
+        fields: Prisma.EmailSendingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmailSendingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmailSendingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>
+          }
+          findFirst: {
+            args: Prisma.EmailSendingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmailSendingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>
+          }
+          findMany: {
+            args: Prisma.EmailSendingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>[]
+          }
+          create: {
+            args: Prisma.EmailSendingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>
+          }
+          createMany: {
+            args: Prisma.EmailSendingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmailSendingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>[]
+          }
+          delete: {
+            args: Prisma.EmailSendingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>
+          }
+          update: {
+            args: Prisma.EmailSendingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmailSendingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmailSendingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmailSendingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmailSendingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmailSendingPayload>
+          }
+          aggregate: {
+            args: Prisma.EmailSendingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmailSending>
+          }
+          groupBy: {
+            args: Prisma.EmailSendingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmailSendingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmailSendingCountArgs<ExtArgs>
+            result: $Utils.Optional<EmailSendingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -986,6 +1076,7 @@ export namespace Prisma {
     user?: UserOmit
     url?: UrlOmit
     checkTable?: CheckTableOmit
+    emailSending?: EmailSendingOmit
   }
 
   /* Types for Logging */
@@ -1081,10 +1172,12 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     Url: number
+    EmailSending: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Url?: boolean | UserCountOutputTypeCountUrlArgs
+    EmailSending?: boolean | UserCountOutputTypeCountEmailSendingArgs
   }
 
   // Custom InputTypes
@@ -1105,6 +1198,13 @@ export namespace Prisma {
     where?: UrlWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountEmailSendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailSendingWhereInput
+  }
+
 
   /**
    * Count Type UrlCountOutputType
@@ -1112,10 +1212,12 @@ export namespace Prisma {
 
   export type UrlCountOutputType = {
     CheckTable: number
+    EmailSending: number
   }
 
   export type UrlCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     CheckTable?: boolean | UrlCountOutputTypeCountCheckTableArgs
+    EmailSending?: boolean | UrlCountOutputTypeCountEmailSendingArgs
   }
 
   // Custom InputTypes
@@ -1134,6 +1236,13 @@ export namespace Prisma {
    */
   export type UrlCountOutputTypeCountCheckTableArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CheckTableWhereInput
+  }
+
+  /**
+   * UrlCountOutputType without action
+   */
+  export type UrlCountOutputTypeCountEmailSendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailSendingWhereInput
   }
 
 
@@ -1330,6 +1439,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     Url?: boolean | User$UrlArgs<ExtArgs>
+    EmailSending?: boolean | User$EmailSendingArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1369,6 +1479,7 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Url?: boolean | User$UrlArgs<ExtArgs>
+    EmailSending?: boolean | User$EmailSendingArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1378,6 +1489,7 @@ export namespace Prisma {
     name: "User"
     objects: {
       Url: Prisma.$UrlPayload<ExtArgs>[]
+      EmailSending: Prisma.$EmailSendingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1783,6 +1895,7 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Url<T extends User$UrlArgs<ExtArgs> = {}>(args?: Subset<T, User$UrlArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UrlPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    EmailSending<T extends User$EmailSendingArgs<ExtArgs> = {}>(args?: Subset<T, User$EmailSendingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2232,6 +2345,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.EmailSending
+   */
+  export type User$EmailSendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    where?: EmailSendingWhereInput
+    orderBy?: EmailSendingOrderByWithRelationInput | EmailSendingOrderByWithRelationInput[]
+    cursor?: EmailSendingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailSendingScalarFieldEnum | EmailSendingScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2424,6 +2561,7 @@ export namespace Prisma {
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     CheckTable?: boolean | Url$CheckTableArgs<ExtArgs>
+    EmailSending?: boolean | Url$EmailSendingArgs<ExtArgs>
     _count?: boolean | UrlCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["url"]>
 
@@ -2460,6 +2598,7 @@ export namespace Prisma {
   export type UrlInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     CheckTable?: boolean | Url$CheckTableArgs<ExtArgs>
+    EmailSending?: boolean | Url$EmailSendingArgs<ExtArgs>
     _count?: boolean | UrlCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UrlIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2474,6 +2613,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       CheckTable: Prisma.$CheckTablePayload<ExtArgs>[]
+      EmailSending: Prisma.$EmailSendingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2878,6 +3018,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     CheckTable<T extends Url$CheckTableArgs<ExtArgs> = {}>(args?: Subset<T, Url$CheckTableArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CheckTablePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    EmailSending<T extends Url$EmailSendingArgs<ExtArgs> = {}>(args?: Subset<T, Url$EmailSendingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3330,6 +3471,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CheckTableScalarFieldEnum | CheckTableScalarFieldEnum[]
+  }
+
+  /**
+   * Url.EmailSending
+   */
+  export type Url$EmailSendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    where?: EmailSendingWhereInput
+    orderBy?: EmailSendingOrderByWithRelationInput | EmailSendingOrderByWithRelationInput[]
+    cursor?: EmailSendingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmailSendingScalarFieldEnum | EmailSendingScalarFieldEnum[]
   }
 
   /**
@@ -4423,6 +4588,1085 @@ export namespace Prisma {
 
 
   /**
+   * Model EmailSending
+   */
+
+  export type AggregateEmailSending = {
+    _count: EmailSendingCountAggregateOutputType | null
+    _min: EmailSendingMinAggregateOutputType | null
+    _max: EmailSendingMaxAggregateOutputType | null
+  }
+
+  export type EmailSendingMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    url_id: string | null
+    email: string | null
+    status: string | null
+    sendAt: Date | null
+  }
+
+  export type EmailSendingMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    url_id: string | null
+    email: string | null
+    status: string | null
+    sendAt: Date | null
+  }
+
+  export type EmailSendingCountAggregateOutputType = {
+    id: number
+    user_id: number
+    url_id: number
+    email: number
+    status: number
+    sendAt: number
+    _all: number
+  }
+
+
+  export type EmailSendingMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    url_id?: true
+    email?: true
+    status?: true
+    sendAt?: true
+  }
+
+  export type EmailSendingMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    url_id?: true
+    email?: true
+    status?: true
+    sendAt?: true
+  }
+
+  export type EmailSendingCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    url_id?: true
+    email?: true
+    status?: true
+    sendAt?: true
+    _all?: true
+  }
+
+  export type EmailSendingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailSending to aggregate.
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailSendings to fetch.
+     */
+    orderBy?: EmailSendingOrderByWithRelationInput | EmailSendingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmailSendingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailSendings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailSendings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmailSendings
+    **/
+    _count?: true | EmailSendingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmailSendingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmailSendingMaxAggregateInputType
+  }
+
+  export type GetEmailSendingAggregateType<T extends EmailSendingAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmailSending]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmailSending[P]>
+      : GetScalarType<T[P], AggregateEmailSending[P]>
+  }
+
+
+
+
+  export type EmailSendingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmailSendingWhereInput
+    orderBy?: EmailSendingOrderByWithAggregationInput | EmailSendingOrderByWithAggregationInput[]
+    by: EmailSendingScalarFieldEnum[] | EmailSendingScalarFieldEnum
+    having?: EmailSendingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmailSendingCountAggregateInputType | true
+    _min?: EmailSendingMinAggregateInputType
+    _max?: EmailSendingMaxAggregateInputType
+  }
+
+  export type EmailSendingGroupByOutputType = {
+    id: string
+    user_id: string
+    url_id: string
+    email: string
+    status: string
+    sendAt: Date
+    _count: EmailSendingCountAggregateOutputType | null
+    _min: EmailSendingMinAggregateOutputType | null
+    _max: EmailSendingMaxAggregateOutputType | null
+  }
+
+  type GetEmailSendingGroupByPayload<T extends EmailSendingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmailSendingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmailSendingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmailSendingGroupByOutputType[P]>
+            : GetScalarType<T[P], EmailSendingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmailSendingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    url_id?: boolean
+    email?: boolean
+    status?: boolean
+    sendAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    url?: boolean | UrlDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailSending"]>
+
+  export type EmailSendingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    url_id?: boolean
+    email?: boolean
+    status?: boolean
+    sendAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    url?: boolean | UrlDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailSending"]>
+
+  export type EmailSendingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    url_id?: boolean
+    email?: boolean
+    status?: boolean
+    sendAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    url?: boolean | UrlDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["emailSending"]>
+
+  export type EmailSendingSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    url_id?: boolean
+    email?: boolean
+    status?: boolean
+    sendAt?: boolean
+  }
+
+  export type EmailSendingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "url_id" | "email" | "status" | "sendAt", ExtArgs["result"]["emailSending"]>
+  export type EmailSendingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    url?: boolean | UrlDefaultArgs<ExtArgs>
+  }
+  export type EmailSendingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    url?: boolean | UrlDefaultArgs<ExtArgs>
+  }
+  export type EmailSendingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    url?: boolean | UrlDefaultArgs<ExtArgs>
+  }
+
+  export type $EmailSendingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmailSending"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      url: Prisma.$UrlPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      url_id: string
+      email: string
+      status: string
+      sendAt: Date
+    }, ExtArgs["result"]["emailSending"]>
+    composites: {}
+  }
+
+  type EmailSendingGetPayload<S extends boolean | null | undefined | EmailSendingDefaultArgs> = $Result.GetResult<Prisma.$EmailSendingPayload, S>
+
+  type EmailSendingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmailSendingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmailSendingCountAggregateInputType | true
+    }
+
+  export interface EmailSendingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmailSending'], meta: { name: 'EmailSending' } }
+    /**
+     * Find zero or one EmailSending that matches the filter.
+     * @param {EmailSendingFindUniqueArgs} args - Arguments to find a EmailSending
+     * @example
+     * // Get one EmailSending
+     * const emailSending = await prisma.emailSending.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmailSendingFindUniqueArgs>(args: SelectSubset<T, EmailSendingFindUniqueArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmailSending that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmailSendingFindUniqueOrThrowArgs} args - Arguments to find a EmailSending
+     * @example
+     * // Get one EmailSending
+     * const emailSending = await prisma.emailSending.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmailSendingFindUniqueOrThrowArgs>(args: SelectSubset<T, EmailSendingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailSending that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingFindFirstArgs} args - Arguments to find a EmailSending
+     * @example
+     * // Get one EmailSending
+     * const emailSending = await prisma.emailSending.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmailSendingFindFirstArgs>(args?: SelectSubset<T, EmailSendingFindFirstArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmailSending that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingFindFirstOrThrowArgs} args - Arguments to find a EmailSending
+     * @example
+     * // Get one EmailSending
+     * const emailSending = await prisma.emailSending.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmailSendingFindFirstOrThrowArgs>(args?: SelectSubset<T, EmailSendingFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmailSendings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmailSendings
+     * const emailSendings = await prisma.emailSending.findMany()
+     * 
+     * // Get first 10 EmailSendings
+     * const emailSendings = await prisma.emailSending.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const emailSendingWithIdOnly = await prisma.emailSending.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmailSendingFindManyArgs>(args?: SelectSubset<T, EmailSendingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmailSending.
+     * @param {EmailSendingCreateArgs} args - Arguments to create a EmailSending.
+     * @example
+     * // Create one EmailSending
+     * const EmailSending = await prisma.emailSending.create({
+     *   data: {
+     *     // ... data to create a EmailSending
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmailSendingCreateArgs>(args: SelectSubset<T, EmailSendingCreateArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmailSendings.
+     * @param {EmailSendingCreateManyArgs} args - Arguments to create many EmailSendings.
+     * @example
+     * // Create many EmailSendings
+     * const emailSending = await prisma.emailSending.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmailSendingCreateManyArgs>(args?: SelectSubset<T, EmailSendingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmailSendings and returns the data saved in the database.
+     * @param {EmailSendingCreateManyAndReturnArgs} args - Arguments to create many EmailSendings.
+     * @example
+     * // Create many EmailSendings
+     * const emailSending = await prisma.emailSending.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmailSendings and only return the `id`
+     * const emailSendingWithIdOnly = await prisma.emailSending.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmailSendingCreateManyAndReturnArgs>(args?: SelectSubset<T, EmailSendingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmailSending.
+     * @param {EmailSendingDeleteArgs} args - Arguments to delete one EmailSending.
+     * @example
+     * // Delete one EmailSending
+     * const EmailSending = await prisma.emailSending.delete({
+     *   where: {
+     *     // ... filter to delete one EmailSending
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmailSendingDeleteArgs>(args: SelectSubset<T, EmailSendingDeleteArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmailSending.
+     * @param {EmailSendingUpdateArgs} args - Arguments to update one EmailSending.
+     * @example
+     * // Update one EmailSending
+     * const emailSending = await prisma.emailSending.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmailSendingUpdateArgs>(args: SelectSubset<T, EmailSendingUpdateArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmailSendings.
+     * @param {EmailSendingDeleteManyArgs} args - Arguments to filter EmailSendings to delete.
+     * @example
+     * // Delete a few EmailSendings
+     * const { count } = await prisma.emailSending.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmailSendingDeleteManyArgs>(args?: SelectSubset<T, EmailSendingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailSendings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmailSendings
+     * const emailSending = await prisma.emailSending.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmailSendingUpdateManyArgs>(args: SelectSubset<T, EmailSendingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmailSendings and returns the data updated in the database.
+     * @param {EmailSendingUpdateManyAndReturnArgs} args - Arguments to update many EmailSendings.
+     * @example
+     * // Update many EmailSendings
+     * const emailSending = await prisma.emailSending.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmailSendings and only return the `id`
+     * const emailSendingWithIdOnly = await prisma.emailSending.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmailSendingUpdateManyAndReturnArgs>(args: SelectSubset<T, EmailSendingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmailSending.
+     * @param {EmailSendingUpsertArgs} args - Arguments to update or create a EmailSending.
+     * @example
+     * // Update or create a EmailSending
+     * const emailSending = await prisma.emailSending.upsert({
+     *   create: {
+     *     // ... data to create a EmailSending
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmailSending we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmailSendingUpsertArgs>(args: SelectSubset<T, EmailSendingUpsertArgs<ExtArgs>>): Prisma__EmailSendingClient<$Result.GetResult<Prisma.$EmailSendingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmailSendings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingCountArgs} args - Arguments to filter EmailSendings to count.
+     * @example
+     * // Count the number of EmailSendings
+     * const count = await prisma.emailSending.count({
+     *   where: {
+     *     // ... the filter for the EmailSendings we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmailSendingCountArgs>(
+      args?: Subset<T, EmailSendingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmailSendingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmailSending.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmailSendingAggregateArgs>(args: Subset<T, EmailSendingAggregateArgs>): Prisma.PrismaPromise<GetEmailSendingAggregateType<T>>
+
+    /**
+     * Group by EmailSending.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmailSendingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmailSendingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmailSendingGroupByArgs['orderBy'] }
+        : { orderBy?: EmailSendingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmailSendingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmailSendingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmailSending model
+   */
+  readonly fields: EmailSendingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmailSending.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmailSendingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    url<T extends UrlDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UrlDefaultArgs<ExtArgs>>): Prisma__UrlClient<$Result.GetResult<Prisma.$UrlPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmailSending model
+   */
+  interface EmailSendingFieldRefs {
+    readonly id: FieldRef<"EmailSending", 'String'>
+    readonly user_id: FieldRef<"EmailSending", 'String'>
+    readonly url_id: FieldRef<"EmailSending", 'String'>
+    readonly email: FieldRef<"EmailSending", 'String'>
+    readonly status: FieldRef<"EmailSending", 'String'>
+    readonly sendAt: FieldRef<"EmailSending", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmailSending findUnique
+   */
+  export type EmailSendingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailSending to fetch.
+     */
+    where: EmailSendingWhereUniqueInput
+  }
+
+  /**
+   * EmailSending findUniqueOrThrow
+   */
+  export type EmailSendingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailSending to fetch.
+     */
+    where: EmailSendingWhereUniqueInput
+  }
+
+  /**
+   * EmailSending findFirst
+   */
+  export type EmailSendingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailSending to fetch.
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailSendings to fetch.
+     */
+    orderBy?: EmailSendingOrderByWithRelationInput | EmailSendingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailSendings.
+     */
+    cursor?: EmailSendingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailSendings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailSendings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailSendings.
+     */
+    distinct?: EmailSendingScalarFieldEnum | EmailSendingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailSending findFirstOrThrow
+   */
+  export type EmailSendingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailSending to fetch.
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailSendings to fetch.
+     */
+    orderBy?: EmailSendingOrderByWithRelationInput | EmailSendingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmailSendings.
+     */
+    cursor?: EmailSendingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailSendings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailSendings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmailSendings.
+     */
+    distinct?: EmailSendingScalarFieldEnum | EmailSendingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailSending findMany
+   */
+  export type EmailSendingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * Filter, which EmailSendings to fetch.
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmailSendings to fetch.
+     */
+    orderBy?: EmailSendingOrderByWithRelationInput | EmailSendingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmailSendings.
+     */
+    cursor?: EmailSendingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmailSendings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmailSendings.
+     */
+    skip?: number
+    distinct?: EmailSendingScalarFieldEnum | EmailSendingScalarFieldEnum[]
+  }
+
+  /**
+   * EmailSending create
+   */
+  export type EmailSendingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmailSending.
+     */
+    data: XOR<EmailSendingCreateInput, EmailSendingUncheckedCreateInput>
+  }
+
+  /**
+   * EmailSending createMany
+   */
+  export type EmailSendingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmailSendings.
+     */
+    data: EmailSendingCreateManyInput | EmailSendingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmailSending createManyAndReturn
+   */
+  export type EmailSendingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmailSendings.
+     */
+    data: EmailSendingCreateManyInput | EmailSendingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmailSending update
+   */
+  export type EmailSendingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmailSending.
+     */
+    data: XOR<EmailSendingUpdateInput, EmailSendingUncheckedUpdateInput>
+    /**
+     * Choose, which EmailSending to update.
+     */
+    where: EmailSendingWhereUniqueInput
+  }
+
+  /**
+   * EmailSending updateMany
+   */
+  export type EmailSendingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmailSendings.
+     */
+    data: XOR<EmailSendingUpdateManyMutationInput, EmailSendingUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailSendings to update
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * Limit how many EmailSendings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailSending updateManyAndReturn
+   */
+  export type EmailSendingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * The data used to update EmailSendings.
+     */
+    data: XOR<EmailSendingUpdateManyMutationInput, EmailSendingUncheckedUpdateManyInput>
+    /**
+     * Filter which EmailSendings to update
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * Limit how many EmailSendings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmailSending upsert
+   */
+  export type EmailSendingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmailSending to update in case it exists.
+     */
+    where: EmailSendingWhereUniqueInput
+    /**
+     * In case the EmailSending found by the `where` argument doesn't exist, create a new EmailSending with this data.
+     */
+    create: XOR<EmailSendingCreateInput, EmailSendingUncheckedCreateInput>
+    /**
+     * In case the EmailSending was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmailSendingUpdateInput, EmailSendingUncheckedUpdateInput>
+  }
+
+  /**
+   * EmailSending delete
+   */
+  export type EmailSendingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+    /**
+     * Filter which EmailSending to delete.
+     */
+    where: EmailSendingWhereUniqueInput
+  }
+
+  /**
+   * EmailSending deleteMany
+   */
+  export type EmailSendingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmailSendings to delete
+     */
+    where?: EmailSendingWhereInput
+    /**
+     * Limit how many EmailSendings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmailSending without action
+   */
+  export type EmailSendingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmailSending
+     */
+    select?: EmailSendingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmailSending
+     */
+    omit?: EmailSendingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmailSendingInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4472,6 +5716,18 @@ export namespace Prisma {
   };
 
   export type CheckTableScalarFieldEnum = (typeof CheckTableScalarFieldEnum)[keyof typeof CheckTableScalarFieldEnum]
+
+
+  export const EmailSendingScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    url_id: 'url_id',
+    email: 'email',
+    status: 'status',
+    sendAt: 'sendAt'
+  };
+
+  export type EmailSendingScalarFieldEnum = (typeof EmailSendingScalarFieldEnum)[keyof typeof EmailSendingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4596,6 +5852,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Url?: UrlListRelationFilter
+    EmailSending?: EmailSendingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4608,6 +5865,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     Url?: UrlOrderByRelationAggregateInput
+    EmailSending?: EmailSendingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4623,6 +5881,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     Url?: UrlListRelationFilter
+    EmailSending?: EmailSendingListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -4665,6 +5924,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Url"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     CheckTable?: CheckTableListRelationFilter
+    EmailSending?: EmailSendingListRelationFilter
   }
 
   export type UrlOrderByWithRelationInput = {
@@ -4676,6 +5936,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     CheckTable?: CheckTableOrderByRelationAggregateInput
+    EmailSending?: EmailSendingOrderByRelationAggregateInput
   }
 
   export type UrlWhereUniqueInput = Prisma.AtLeast<{
@@ -4690,6 +5951,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Url"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     CheckTable?: CheckTableListRelationFilter
+    EmailSending?: EmailSendingListRelationFilter
   }, "id">
 
   export type UrlOrderByWithAggregationInput = {
@@ -4776,6 +6038,69 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CheckTable"> | Date | string
   }
 
+  export type EmailSendingWhereInput = {
+    AND?: EmailSendingWhereInput | EmailSendingWhereInput[]
+    OR?: EmailSendingWhereInput[]
+    NOT?: EmailSendingWhereInput | EmailSendingWhereInput[]
+    id?: StringFilter<"EmailSending"> | string
+    user_id?: StringFilter<"EmailSending"> | string
+    url_id?: StringFilter<"EmailSending"> | string
+    email?: StringFilter<"EmailSending"> | string
+    status?: StringFilter<"EmailSending"> | string
+    sendAt?: DateTimeFilter<"EmailSending"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    url?: XOR<UrlScalarRelationFilter, UrlWhereInput>
+  }
+
+  export type EmailSendingOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    url_id?: SortOrder
+    email?: SortOrder
+    status?: SortOrder
+    sendAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    url?: UrlOrderByWithRelationInput
+  }
+
+  export type EmailSendingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmailSendingWhereInput | EmailSendingWhereInput[]
+    OR?: EmailSendingWhereInput[]
+    NOT?: EmailSendingWhereInput | EmailSendingWhereInput[]
+    user_id?: StringFilter<"EmailSending"> | string
+    url_id?: StringFilter<"EmailSending"> | string
+    email?: StringFilter<"EmailSending"> | string
+    status?: StringFilter<"EmailSending"> | string
+    sendAt?: DateTimeFilter<"EmailSending"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    url?: XOR<UrlScalarRelationFilter, UrlWhereInput>
+  }, "id">
+
+  export type EmailSendingOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    url_id?: SortOrder
+    email?: SortOrder
+    status?: SortOrder
+    sendAt?: SortOrder
+    _count?: EmailSendingCountOrderByAggregateInput
+    _max?: EmailSendingMaxOrderByAggregateInput
+    _min?: EmailSendingMinOrderByAggregateInput
+  }
+
+  export type EmailSendingScalarWhereWithAggregatesInput = {
+    AND?: EmailSendingScalarWhereWithAggregatesInput | EmailSendingScalarWhereWithAggregatesInput[]
+    OR?: EmailSendingScalarWhereWithAggregatesInput[]
+    NOT?: EmailSendingScalarWhereWithAggregatesInput | EmailSendingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmailSending"> | string
+    user_id?: StringWithAggregatesFilter<"EmailSending"> | string
+    url_id?: StringWithAggregatesFilter<"EmailSending"> | string
+    email?: StringWithAggregatesFilter<"EmailSending"> | string
+    status?: StringWithAggregatesFilter<"EmailSending"> | string
+    sendAt?: DateTimeWithAggregatesFilter<"EmailSending"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -4786,6 +6111,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Url?: UrlCreateNestedManyWithoutUserInput
+    EmailSending?: EmailSendingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -4798,6 +6124,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Url?: UrlUncheckedCreateNestedManyWithoutUserInput
+    EmailSending?: EmailSendingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -4810,6 +6137,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Url?: UrlUpdateManyWithoutUserNestedInput
+    EmailSending?: EmailSendingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -4822,6 +6150,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Url?: UrlUncheckedUpdateManyWithoutUserNestedInput
+    EmailSending?: EmailSendingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -4865,6 +6194,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutUrlInput
     CheckTable?: CheckTableCreateNestedManyWithoutUrlInput
+    EmailSending?: EmailSendingCreateNestedManyWithoutUrlInput
   }
 
   export type UrlUncheckedCreateInput = {
@@ -4875,6 +6205,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     CheckTable?: CheckTableUncheckedCreateNestedManyWithoutUrlInput
+    EmailSending?: EmailSendingUncheckedCreateNestedManyWithoutUrlInput
   }
 
   export type UrlUpdateInput = {
@@ -4885,6 +6216,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutUrlNestedInput
     CheckTable?: CheckTableUpdateManyWithoutUrlNestedInput
+    EmailSending?: EmailSendingUpdateManyWithoutUrlNestedInput
   }
 
   export type UrlUncheckedUpdateInput = {
@@ -4895,6 +6227,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     CheckTable?: CheckTableUncheckedUpdateManyWithoutUrlNestedInput
+    EmailSending?: EmailSendingUncheckedUpdateManyWithoutUrlNestedInput
   }
 
   export type UrlCreateManyInput = {
@@ -4985,6 +6318,67 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmailSendingCreateInput = {
+    id?: string
+    email: string
+    status: string
+    sendAt: Date | string
+    user: UserCreateNestedOneWithoutEmailSendingInput
+    url: UrlCreateNestedOneWithoutEmailSendingInput
+  }
+
+  export type EmailSendingUncheckedCreateInput = {
+    id?: string
+    user_id: string
+    url_id: string
+    email: string
+    status: string
+    sendAt: Date | string
+  }
+
+  export type EmailSendingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEmailSendingNestedInput
+    url?: UrlUpdateOneRequiredWithoutEmailSendingNestedInput
+  }
+
+  export type EmailSendingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    url_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailSendingCreateManyInput = {
+    id?: string
+    user_id: string
+    url_id: string
+    email: string
+    status: string
+    sendAt: Date | string
+  }
+
+  export type EmailSendingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailSendingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    url_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5044,12 +6438,22 @@ export namespace Prisma {
     none?: UrlWhereInput
   }
 
+  export type EmailSendingListRelationFilter = {
+    every?: EmailSendingWhereInput
+    some?: EmailSendingWhereInput
+    none?: EmailSendingWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type UrlOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmailSendingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -5245,6 +6649,33 @@ export namespace Prisma {
     _max?: NestedEnumCheckStatusFilter<$PrismaModel>
   }
 
+  export type EmailSendingCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    url_id?: SortOrder
+    email?: SortOrder
+    status?: SortOrder
+    sendAt?: SortOrder
+  }
+
+  export type EmailSendingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    url_id?: SortOrder
+    email?: SortOrder
+    status?: SortOrder
+    sendAt?: SortOrder
+  }
+
+  export type EmailSendingMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    url_id?: SortOrder
+    email?: SortOrder
+    status?: SortOrder
+    sendAt?: SortOrder
+  }
+
   export type UrlCreateNestedManyWithoutUserInput = {
     create?: XOR<UrlCreateWithoutUserInput, UrlUncheckedCreateWithoutUserInput> | UrlCreateWithoutUserInput[] | UrlUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UrlCreateOrConnectWithoutUserInput | UrlCreateOrConnectWithoutUserInput[]
@@ -5252,11 +6683,25 @@ export namespace Prisma {
     connect?: UrlWhereUniqueInput | UrlWhereUniqueInput[]
   }
 
+  export type EmailSendingCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailSendingCreateWithoutUserInput, EmailSendingUncheckedCreateWithoutUserInput> | EmailSendingCreateWithoutUserInput[] | EmailSendingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUserInput | EmailSendingCreateOrConnectWithoutUserInput[]
+    createMany?: EmailSendingCreateManyUserInputEnvelope
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+  }
+
   export type UrlUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<UrlCreateWithoutUserInput, UrlUncheckedCreateWithoutUserInput> | UrlCreateWithoutUserInput[] | UrlUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UrlCreateOrConnectWithoutUserInput | UrlCreateOrConnectWithoutUserInput[]
     createMany?: UrlCreateManyUserInputEnvelope
     connect?: UrlWhereUniqueInput | UrlWhereUniqueInput[]
+  }
+
+  export type EmailSendingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EmailSendingCreateWithoutUserInput, EmailSendingUncheckedCreateWithoutUserInput> | EmailSendingCreateWithoutUserInput[] | EmailSendingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUserInput | EmailSendingCreateOrConnectWithoutUserInput[]
+    createMany?: EmailSendingCreateManyUserInputEnvelope
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5293,6 +6738,20 @@ export namespace Prisma {
     deleteMany?: UrlScalarWhereInput | UrlScalarWhereInput[]
   }
 
+  export type EmailSendingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailSendingCreateWithoutUserInput, EmailSendingUncheckedCreateWithoutUserInput> | EmailSendingCreateWithoutUserInput[] | EmailSendingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUserInput | EmailSendingCreateOrConnectWithoutUserInput[]
+    upsert?: EmailSendingUpsertWithWhereUniqueWithoutUserInput | EmailSendingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailSendingCreateManyUserInputEnvelope
+    set?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    disconnect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    delete?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    update?: EmailSendingUpdateWithWhereUniqueWithoutUserInput | EmailSendingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailSendingUpdateManyWithWhereWithoutUserInput | EmailSendingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailSendingScalarWhereInput | EmailSendingScalarWhereInput[]
+  }
+
   export type UrlUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<UrlCreateWithoutUserInput, UrlUncheckedCreateWithoutUserInput> | UrlCreateWithoutUserInput[] | UrlUncheckedCreateWithoutUserInput[]
     connectOrCreate?: UrlCreateOrConnectWithoutUserInput | UrlCreateOrConnectWithoutUserInput[]
@@ -5305,6 +6764,20 @@ export namespace Prisma {
     update?: UrlUpdateWithWhereUniqueWithoutUserInput | UrlUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UrlUpdateManyWithWhereWithoutUserInput | UrlUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UrlScalarWhereInput | UrlScalarWhereInput[]
+  }
+
+  export type EmailSendingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EmailSendingCreateWithoutUserInput, EmailSendingUncheckedCreateWithoutUserInput> | EmailSendingCreateWithoutUserInput[] | EmailSendingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUserInput | EmailSendingCreateOrConnectWithoutUserInput[]
+    upsert?: EmailSendingUpsertWithWhereUniqueWithoutUserInput | EmailSendingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EmailSendingCreateManyUserInputEnvelope
+    set?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    disconnect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    delete?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    update?: EmailSendingUpdateWithWhereUniqueWithoutUserInput | EmailSendingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EmailSendingUpdateManyWithWhereWithoutUserInput | EmailSendingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EmailSendingScalarWhereInput | EmailSendingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutUrlInput = {
@@ -5320,11 +6793,25 @@ export namespace Prisma {
     connect?: CheckTableWhereUniqueInput | CheckTableWhereUniqueInput[]
   }
 
+  export type EmailSendingCreateNestedManyWithoutUrlInput = {
+    create?: XOR<EmailSendingCreateWithoutUrlInput, EmailSendingUncheckedCreateWithoutUrlInput> | EmailSendingCreateWithoutUrlInput[] | EmailSendingUncheckedCreateWithoutUrlInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUrlInput | EmailSendingCreateOrConnectWithoutUrlInput[]
+    createMany?: EmailSendingCreateManyUrlInputEnvelope
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+  }
+
   export type CheckTableUncheckedCreateNestedManyWithoutUrlInput = {
     create?: XOR<CheckTableCreateWithoutUrlInput, CheckTableUncheckedCreateWithoutUrlInput> | CheckTableCreateWithoutUrlInput[] | CheckTableUncheckedCreateWithoutUrlInput[]
     connectOrCreate?: CheckTableCreateOrConnectWithoutUrlInput | CheckTableCreateOrConnectWithoutUrlInput[]
     createMany?: CheckTableCreateManyUrlInputEnvelope
     connect?: CheckTableWhereUniqueInput | CheckTableWhereUniqueInput[]
+  }
+
+  export type EmailSendingUncheckedCreateNestedManyWithoutUrlInput = {
+    create?: XOR<EmailSendingCreateWithoutUrlInput, EmailSendingUncheckedCreateWithoutUrlInput> | EmailSendingCreateWithoutUrlInput[] | EmailSendingUncheckedCreateWithoutUrlInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUrlInput | EmailSendingCreateOrConnectWithoutUrlInput[]
+    createMany?: EmailSendingCreateManyUrlInputEnvelope
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutUrlNestedInput = {
@@ -5349,6 +6836,20 @@ export namespace Prisma {
     deleteMany?: CheckTableScalarWhereInput | CheckTableScalarWhereInput[]
   }
 
+  export type EmailSendingUpdateManyWithoutUrlNestedInput = {
+    create?: XOR<EmailSendingCreateWithoutUrlInput, EmailSendingUncheckedCreateWithoutUrlInput> | EmailSendingCreateWithoutUrlInput[] | EmailSendingUncheckedCreateWithoutUrlInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUrlInput | EmailSendingCreateOrConnectWithoutUrlInput[]
+    upsert?: EmailSendingUpsertWithWhereUniqueWithoutUrlInput | EmailSendingUpsertWithWhereUniqueWithoutUrlInput[]
+    createMany?: EmailSendingCreateManyUrlInputEnvelope
+    set?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    disconnect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    delete?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    update?: EmailSendingUpdateWithWhereUniqueWithoutUrlInput | EmailSendingUpdateWithWhereUniqueWithoutUrlInput[]
+    updateMany?: EmailSendingUpdateManyWithWhereWithoutUrlInput | EmailSendingUpdateManyWithWhereWithoutUrlInput[]
+    deleteMany?: EmailSendingScalarWhereInput | EmailSendingScalarWhereInput[]
+  }
+
   export type CheckTableUncheckedUpdateManyWithoutUrlNestedInput = {
     create?: XOR<CheckTableCreateWithoutUrlInput, CheckTableUncheckedCreateWithoutUrlInput> | CheckTableCreateWithoutUrlInput[] | CheckTableUncheckedCreateWithoutUrlInput[]
     connectOrCreate?: CheckTableCreateOrConnectWithoutUrlInput | CheckTableCreateOrConnectWithoutUrlInput[]
@@ -5361,6 +6862,20 @@ export namespace Prisma {
     update?: CheckTableUpdateWithWhereUniqueWithoutUrlInput | CheckTableUpdateWithWhereUniqueWithoutUrlInput[]
     updateMany?: CheckTableUpdateManyWithWhereWithoutUrlInput | CheckTableUpdateManyWithWhereWithoutUrlInput[]
     deleteMany?: CheckTableScalarWhereInput | CheckTableScalarWhereInput[]
+  }
+
+  export type EmailSendingUncheckedUpdateManyWithoutUrlNestedInput = {
+    create?: XOR<EmailSendingCreateWithoutUrlInput, EmailSendingUncheckedCreateWithoutUrlInput> | EmailSendingCreateWithoutUrlInput[] | EmailSendingUncheckedCreateWithoutUrlInput[]
+    connectOrCreate?: EmailSendingCreateOrConnectWithoutUrlInput | EmailSendingCreateOrConnectWithoutUrlInput[]
+    upsert?: EmailSendingUpsertWithWhereUniqueWithoutUrlInput | EmailSendingUpsertWithWhereUniqueWithoutUrlInput[]
+    createMany?: EmailSendingCreateManyUrlInputEnvelope
+    set?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    disconnect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    delete?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    connect?: EmailSendingWhereUniqueInput | EmailSendingWhereUniqueInput[]
+    update?: EmailSendingUpdateWithWhereUniqueWithoutUrlInput | EmailSendingUpdateWithWhereUniqueWithoutUrlInput[]
+    updateMany?: EmailSendingUpdateManyWithWhereWithoutUrlInput | EmailSendingUpdateManyWithWhereWithoutUrlInput[]
+    deleteMany?: EmailSendingScalarWhereInput | EmailSendingScalarWhereInput[]
   }
 
   export type UrlCreateNestedOneWithoutCheckTableInput = {
@@ -5379,6 +6894,34 @@ export namespace Prisma {
     upsert?: UrlUpsertWithoutCheckTableInput
     connect?: UrlWhereUniqueInput
     update?: XOR<XOR<UrlUpdateToOneWithWhereWithoutCheckTableInput, UrlUpdateWithoutCheckTableInput>, UrlUncheckedUpdateWithoutCheckTableInput>
+  }
+
+  export type UserCreateNestedOneWithoutEmailSendingInput = {
+    create?: XOR<UserCreateWithoutEmailSendingInput, UserUncheckedCreateWithoutEmailSendingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailSendingInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UrlCreateNestedOneWithoutEmailSendingInput = {
+    create?: XOR<UrlCreateWithoutEmailSendingInput, UrlUncheckedCreateWithoutEmailSendingInput>
+    connectOrCreate?: UrlCreateOrConnectWithoutEmailSendingInput
+    connect?: UrlWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutEmailSendingNestedInput = {
+    create?: XOR<UserCreateWithoutEmailSendingInput, UserUncheckedCreateWithoutEmailSendingInput>
+    connectOrCreate?: UserCreateOrConnectWithoutEmailSendingInput
+    upsert?: UserUpsertWithoutEmailSendingInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutEmailSendingInput, UserUpdateWithoutEmailSendingInput>, UserUncheckedUpdateWithoutEmailSendingInput>
+  }
+
+  export type UrlUpdateOneRequiredWithoutEmailSendingNestedInput = {
+    create?: XOR<UrlCreateWithoutEmailSendingInput, UrlUncheckedCreateWithoutEmailSendingInput>
+    connectOrCreate?: UrlCreateOrConnectWithoutEmailSendingInput
+    upsert?: UrlUpsertWithoutEmailSendingInput
+    connect?: UrlWhereUniqueInput
+    update?: XOR<XOR<UrlUpdateToOneWithWhereWithoutEmailSendingInput, UrlUpdateWithoutEmailSendingInput>, UrlUncheckedUpdateWithoutEmailSendingInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5544,6 +7087,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     CheckTable?: CheckTableCreateNestedManyWithoutUrlInput
+    EmailSending?: EmailSendingCreateNestedManyWithoutUrlInput
   }
 
   export type UrlUncheckedCreateWithoutUserInput = {
@@ -5553,6 +7097,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     CheckTable?: CheckTableUncheckedCreateNestedManyWithoutUrlInput
+    EmailSending?: EmailSendingUncheckedCreateNestedManyWithoutUrlInput
   }
 
   export type UrlCreateOrConnectWithoutUserInput = {
@@ -5562,6 +7107,32 @@ export namespace Prisma {
 
   export type UrlCreateManyUserInputEnvelope = {
     data: UrlCreateManyUserInput | UrlCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmailSendingCreateWithoutUserInput = {
+    id?: string
+    email: string
+    status: string
+    sendAt: Date | string
+    url: UrlCreateNestedOneWithoutEmailSendingInput
+  }
+
+  export type EmailSendingUncheckedCreateWithoutUserInput = {
+    id?: string
+    url_id: string
+    email: string
+    status: string
+    sendAt: Date | string
+  }
+
+  export type EmailSendingCreateOrConnectWithoutUserInput = {
+    where: EmailSendingWhereUniqueInput
+    create: XOR<EmailSendingCreateWithoutUserInput, EmailSendingUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailSendingCreateManyUserInputEnvelope = {
+    data: EmailSendingCreateManyUserInput | EmailSendingCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -5593,6 +7164,34 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Url"> | Date | string
   }
 
+  export type EmailSendingUpsertWithWhereUniqueWithoutUserInput = {
+    where: EmailSendingWhereUniqueInput
+    update: XOR<EmailSendingUpdateWithoutUserInput, EmailSendingUncheckedUpdateWithoutUserInput>
+    create: XOR<EmailSendingCreateWithoutUserInput, EmailSendingUncheckedCreateWithoutUserInput>
+  }
+
+  export type EmailSendingUpdateWithWhereUniqueWithoutUserInput = {
+    where: EmailSendingWhereUniqueInput
+    data: XOR<EmailSendingUpdateWithoutUserInput, EmailSendingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type EmailSendingUpdateManyWithWhereWithoutUserInput = {
+    where: EmailSendingScalarWhereInput
+    data: XOR<EmailSendingUpdateManyMutationInput, EmailSendingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type EmailSendingScalarWhereInput = {
+    AND?: EmailSendingScalarWhereInput | EmailSendingScalarWhereInput[]
+    OR?: EmailSendingScalarWhereInput[]
+    NOT?: EmailSendingScalarWhereInput | EmailSendingScalarWhereInput[]
+    id?: StringFilter<"EmailSending"> | string
+    user_id?: StringFilter<"EmailSending"> | string
+    url_id?: StringFilter<"EmailSending"> | string
+    email?: StringFilter<"EmailSending"> | string
+    status?: StringFilter<"EmailSending"> | string
+    sendAt?: DateTimeFilter<"EmailSending"> | Date | string
+  }
+
   export type UserCreateWithoutUrlInput = {
     id?: string
     name?: string | null
@@ -5602,6 +7201,7 @@ export namespace Prisma {
     isVerified?: boolean | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    EmailSending?: EmailSendingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUrlInput = {
@@ -5613,6 +7213,7 @@ export namespace Prisma {
     isVerified?: boolean | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    EmailSending?: EmailSendingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUrlInput = {
@@ -5646,6 +7247,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EmailSendingCreateWithoutUrlInput = {
+    id?: string
+    email: string
+    status: string
+    sendAt: Date | string
+    user: UserCreateNestedOneWithoutEmailSendingInput
+  }
+
+  export type EmailSendingUncheckedCreateWithoutUrlInput = {
+    id?: string
+    user_id: string
+    email: string
+    status: string
+    sendAt: Date | string
+  }
+
+  export type EmailSendingCreateOrConnectWithoutUrlInput = {
+    where: EmailSendingWhereUniqueInput
+    create: XOR<EmailSendingCreateWithoutUrlInput, EmailSendingUncheckedCreateWithoutUrlInput>
+  }
+
+  export type EmailSendingCreateManyUrlInputEnvelope = {
+    data: EmailSendingCreateManyUrlInput | EmailSendingCreateManyUrlInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutUrlInput = {
     update: XOR<UserUpdateWithoutUrlInput, UserUncheckedUpdateWithoutUrlInput>
     create: XOR<UserCreateWithoutUrlInput, UserUncheckedCreateWithoutUrlInput>
@@ -5666,6 +7293,7 @@ export namespace Prisma {
     isVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    EmailSending?: EmailSendingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUrlInput = {
@@ -5677,6 +7305,7 @@ export namespace Prisma {
     isVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    EmailSending?: EmailSendingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CheckTableUpsertWithWhereUniqueWithoutUrlInput = {
@@ -5707,6 +7336,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"CheckTable"> | Date | string
   }
 
+  export type EmailSendingUpsertWithWhereUniqueWithoutUrlInput = {
+    where: EmailSendingWhereUniqueInput
+    update: XOR<EmailSendingUpdateWithoutUrlInput, EmailSendingUncheckedUpdateWithoutUrlInput>
+    create: XOR<EmailSendingCreateWithoutUrlInput, EmailSendingUncheckedCreateWithoutUrlInput>
+  }
+
+  export type EmailSendingUpdateWithWhereUniqueWithoutUrlInput = {
+    where: EmailSendingWhereUniqueInput
+    data: XOR<EmailSendingUpdateWithoutUrlInput, EmailSendingUncheckedUpdateWithoutUrlInput>
+  }
+
+  export type EmailSendingUpdateManyWithWhereWithoutUrlInput = {
+    where: EmailSendingScalarWhereInput
+    data: XOR<EmailSendingUpdateManyMutationInput, EmailSendingUncheckedUpdateManyWithoutUrlInput>
+  }
+
   export type UrlCreateWithoutCheckTableInput = {
     id?: string
     url: string
@@ -5714,6 +7359,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutUrlInput
+    EmailSending?: EmailSendingCreateNestedManyWithoutUrlInput
   }
 
   export type UrlUncheckedCreateWithoutCheckTableInput = {
@@ -5723,6 +7369,7 @@ export namespace Prisma {
     name?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    EmailSending?: EmailSendingUncheckedCreateNestedManyWithoutUrlInput
   }
 
   export type UrlCreateOrConnectWithoutCheckTableInput = {
@@ -5748,6 +7395,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutUrlNestedInput
+    EmailSending?: EmailSendingUpdateManyWithoutUrlNestedInput
   }
 
   export type UrlUncheckedUpdateWithoutCheckTableInput = {
@@ -5757,6 +7405,127 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    EmailSending?: EmailSendingUncheckedUpdateManyWithoutUrlNestedInput
+  }
+
+  export type UserCreateWithoutEmailSendingInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password: string
+    role?: $Enums.Role
+    isVerified?: boolean | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Url?: UrlCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutEmailSendingInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password: string
+    role?: $Enums.Role
+    isVerified?: boolean | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Url?: UrlUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutEmailSendingInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutEmailSendingInput, UserUncheckedCreateWithoutEmailSendingInput>
+  }
+
+  export type UrlCreateWithoutEmailSendingInput = {
+    id?: string
+    url: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUrlInput
+    CheckTable?: CheckTableCreateNestedManyWithoutUrlInput
+  }
+
+  export type UrlUncheckedCreateWithoutEmailSendingInput = {
+    id?: string
+    user_id: string
+    url: string
+    name?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    CheckTable?: CheckTableUncheckedCreateNestedManyWithoutUrlInput
+  }
+
+  export type UrlCreateOrConnectWithoutEmailSendingInput = {
+    where: UrlWhereUniqueInput
+    create: XOR<UrlCreateWithoutEmailSendingInput, UrlUncheckedCreateWithoutEmailSendingInput>
+  }
+
+  export type UserUpsertWithoutEmailSendingInput = {
+    update: XOR<UserUpdateWithoutEmailSendingInput, UserUncheckedUpdateWithoutEmailSendingInput>
+    create: XOR<UserCreateWithoutEmailSendingInput, UserUncheckedCreateWithoutEmailSendingInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutEmailSendingInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutEmailSendingInput, UserUncheckedUpdateWithoutEmailSendingInput>
+  }
+
+  export type UserUpdateWithoutEmailSendingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Url?: UrlUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutEmailSendingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isVerified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Url?: UrlUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UrlUpsertWithoutEmailSendingInput = {
+    update: XOR<UrlUpdateWithoutEmailSendingInput, UrlUncheckedUpdateWithoutEmailSendingInput>
+    create: XOR<UrlCreateWithoutEmailSendingInput, UrlUncheckedCreateWithoutEmailSendingInput>
+    where?: UrlWhereInput
+  }
+
+  export type UrlUpdateToOneWithWhereWithoutEmailSendingInput = {
+    where?: UrlWhereInput
+    data: XOR<UrlUpdateWithoutEmailSendingInput, UrlUncheckedUpdateWithoutEmailSendingInput>
+  }
+
+  export type UrlUpdateWithoutEmailSendingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUrlNestedInput
+    CheckTable?: CheckTableUpdateManyWithoutUrlNestedInput
+  }
+
+  export type UrlUncheckedUpdateWithoutEmailSendingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    CheckTable?: CheckTableUncheckedUpdateManyWithoutUrlNestedInput
   }
 
   export type UrlCreateManyUserInput = {
@@ -5767,6 +7536,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type EmailSendingCreateManyUserInput = {
+    id?: string
+    url_id: string
+    email: string
+    status: string
+    sendAt: Date | string
+  }
+
   export type UrlUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -5774,6 +7551,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     CheckTable?: CheckTableUpdateManyWithoutUrlNestedInput
+    EmailSending?: EmailSendingUpdateManyWithoutUrlNestedInput
   }
 
   export type UrlUncheckedUpdateWithoutUserInput = {
@@ -5783,6 +7561,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     CheckTable?: CheckTableUncheckedUpdateManyWithoutUrlNestedInput
+    EmailSending?: EmailSendingUncheckedUpdateManyWithoutUrlNestedInput
   }
 
   export type UrlUncheckedUpdateManyWithoutUserInput = {
@@ -5793,12 +7572,44 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmailSendingUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: UrlUpdateOneRequiredWithoutEmailSendingNestedInput
+  }
+
+  export type EmailSendingUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailSendingUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CheckTableCreateManyUrlInput = {
     id?: string
     status?: $Enums.CheckStatus
     checkedAt: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type EmailSendingCreateManyUrlInput = {
+    id?: string
+    user_id: string
+    email: string
+    status: string
+    sendAt: Date | string
   }
 
   export type CheckTableUpdateWithoutUrlInput = {
@@ -5823,6 +7634,30 @@ export namespace Prisma {
     checkedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailSendingUpdateWithoutUrlInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutEmailSendingNestedInput
+  }
+
+  export type EmailSendingUncheckedUpdateWithoutUrlInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmailSendingUncheckedUpdateManyWithoutUrlInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    sendAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

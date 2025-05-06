@@ -20,26 +20,28 @@ enum Role {
 }
 
 model User {
-  id         String   @id @default(cuid())
-  name       String?
-  email      String   @unique
-  password   String
-  role       Role     @default(USER)
-  isVerified Boolean? @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  Url        Url[]
+  id           String         @id @default(cuid())
+  name         String?
+  email        String         @unique
+  password     String
+  role         Role           @default(USER)
+  isVerified   Boolean?       @default(false)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Url          Url[]
+  EmailSending EmailSending[]
 }
 
 model Url {
-  id         String       @id @default(cuid())
-  user_id    String
-  url        String
-  name       String?
-  user       User         @relation(fields: [user_id], references: [id])
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  CheckTable CheckTable[]
+  id           String         @id @default(cuid())
+  user_id      String
+  url          String
+  name         String?
+  user         User           @relation(fields: [user_id], references: [id])
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  CheckTable   CheckTable[]
+  EmailSending EmailSending[]
 }
 
 enum CheckStatus {
@@ -55,4 +57,15 @@ model CheckTable {
   checkedAt DateTime
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
+}
+
+model EmailSending {
+  id      String   @id @default(cuid())
+  user_id String
+  user    User     @relation(fields: [user_id], references: [id])
+  url_id  String
+  url     Url      @relation(fields: [url_id], references: [id])
+  email   String
+  status  String
+  sendAt  DateTime
 }

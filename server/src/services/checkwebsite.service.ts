@@ -139,7 +139,45 @@ export class CheckWebsiteService {
           return;
         }
 
-        // Send alert email
+        /**
+         * Send email if the website is down for more than 10 times
+         * and the last check is down and when the email send
+         */
+
+        const lastsend = await prisma.emailSending.findFirst({
+          where: {
+            url_id: payload.url_id,
+          },
+          orderBy: {
+            sendAt: 'desc',
+          },
+        });
+
+        // if last send is more than 10 minutes ago
+        if (lastsend && new Date().getTime() - lastsend.sendAt.getTime() < 10 * 60 * 1000) {
+          console.log(`⏰ Website ${payload.url} is DOWN, but email already sent`);
+          channel.ack(msg);
+          return;
+        }
+
+        await prisma.emailSending.create({
+          data: {
+            email: payload.userEmail,
+            status: 'DOWN',
+            sendAt: new Date(),
+            user: {
+              connect: {
+                email: payload.userEmail,
+              },
+            },
+            url: {
+              connect: {
+                id: payload.url_id,
+              },
+            },
+          },
+        });
+
         await this.sendMail(payload.userEmail, payload.url);
         channel.ack(msg);
       }

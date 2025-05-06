@@ -149,6 +149,15 @@ exports.Prisma.CheckTableScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmailSendingScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  url_id: 'url_id',
+  email: 'email',
+  status: 'status',
+  sendAt: 'sendAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -176,7 +185,8 @@ exports.CheckStatus = exports.$Enums.CheckStatus = {
 exports.Prisma.ModelName = {
   User: 'User',
   Url: 'Url',
-  CheckTable: 'CheckTable'
+  CheckTable: 'CheckTable',
+  EmailSending: 'EmailSending'
 };
 
 /**
